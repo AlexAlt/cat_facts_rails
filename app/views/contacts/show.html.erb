@@ -1,2 +1,5 @@
-<h1><%= @contact.name %></h1>
-<h1><%= @contact.phonenumber %></h1>
+<div class="contact-card">
+  <%= render @contact %>
+</div>
+
+<%= link_to "Update Contact", edit_contact_path(@contact), id: 'update-contact', remote: true  %>

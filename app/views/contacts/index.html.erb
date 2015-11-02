@@ -2,9 +2,9 @@
 <p>
   <%= link_to "Add new Catact", new_contact_path %>
 </p>
-<ul>
+<ul class="contacts-list">
   <% @contacts.each do |contact| %>
-    <li><%= contact.name %>
+    <li><%= link_to contact.name, contact %>
       <ul>
         <li><%= contact.phonenumber %></li>
       </ul>

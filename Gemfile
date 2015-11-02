@@ -13,6 +13,7 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'simple_form'
 gem 'seed_dump'
 gem 'rest-client'
+gem 'responders', '~> 2.0'
 
 
 group :development do

@@ -1,4 +1,4 @@
-<%= simple_form_for @contact do |f| %>
+<%= simple_form_for @contact, remote: true do |f| %>
     <%= f.error_notification %>
     <% if @contact.errors.any? %>
       <% @contact.errors.full_messages.each do |m| %>
