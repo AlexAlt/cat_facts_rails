@@ -1,10 +1,16 @@
-
 <%= simple_form_for @message do |f| %>
+    <%= f.error_notification %>
+    <% if @message.errors.any? %>
+      <% @message.errors.full_messages.each do |m| %>
+      <div class='alert alert-danger'>
+        <p><%= m %></p>
+      </div>
+      <% end %>
+    <% end %>
   <div class="form-inputs form-group">
     <%= f.input :to %>
     <%= f.input :from, placeholder: "5412482591" %>
-    <%= f.label "Cool Cat Fact:" %>
-    <%= f.text_area :body, class: "form-control" %>
+    <%= f.input :body, as: :text, class: "form-control" %>
   </div>
   <div class="form-actions">
     <%= f.button :submit, "Send Cat Fact" %>

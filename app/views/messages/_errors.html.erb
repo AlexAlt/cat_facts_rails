@@ -1,0 +1,6 @@
+<% if @message.errors.any? %>
+  <p>Oooopsie</p>
+  <% @message.errors.full_messages.each do |m| %>
+    <p><%= message %></p>
+  <% end %>
+<% end %>

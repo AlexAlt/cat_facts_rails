@@ -1,0 +1,13 @@
+<h1>Contacts</h1>
+<p>
+  <%= link_to "Add new Catact", new_contact_path %>
+</p>
+<ul>
+  <% @contacts.each do |contact| %>
+    <li><%= contact.name %>
+      <ul>
+        <li><%= contact.phonenumber %></li>
+      </ul>
+    </li>
+  <% end %>
+</ul>

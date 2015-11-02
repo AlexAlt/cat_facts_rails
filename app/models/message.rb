@@ -1,5 +1,8 @@
 class Message < ActiveRecord::Base
   before_create :send_message
+  validates_presence_of :to
+  validates_presence_of :from
+  validates_presence_of :body
 
 private
 
@@ -14,7 +17,9 @@ private
                       :To => to,
                       :From => from }
       ).execute
-    rescue
+    rescue RestClient::BadRequest => error
+      message = JSON.parse(error.response)['message']
+      errors.add(:base, message)
       false
     end
   end

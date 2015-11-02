@@ -12,7 +12,7 @@ gem 'hirb'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'simple_form'
 gem 'seed_dump'
-gem 'rest_client'
+gem 'rest-client'
 
 
 group :development do
