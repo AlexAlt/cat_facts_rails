@@ -1,0 +1,5 @@
+<h2>Cat Fact sent <%= @message.created_at.strftime("at %I:%M%p") %>:</h2>
+
+<h3>"<%= @message.body %>"</h3>
+
+<%= link_to "Back to all Cat Facts", messages_path %>
