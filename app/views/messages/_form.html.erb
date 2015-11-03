@@ -1,15 +1,15 @@
 <%= render "layouts/errors", :object => @message %>
 
 
-<%= simple_form_for @message do |f| %>
+<%= form_tag (messages_path) do %>
 
   <div class="form-inputs form-group">
-    <%= f.input :to %>
-    <%= f.input :to, collection: @contacts, as: :select, method: :name %>
-    <%= f.input :from, input_html: {value: "5412482591"} %>
-    <%= f.input :body, as: :text, class: "form-control" %>
+    <%= text_field_tag "to" %>
+    <%= select_tag "to_collection", options_from_collection_for_select(@contacts, "phonenumber", "name"), include_blank: true %>
+    <%= text_field_tag "from", "5412482591" %>
+    <%= text_area_tag "body" %>
   </div>
   <div class="form-actions">
-    <%= f.button :submit, "Send Cat Fact" %>
+    <%= submit_tag "Send Cat Fact" %>
   </div>
 <% end %>
