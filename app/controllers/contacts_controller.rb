@@ -7,15 +7,21 @@ class ContactsController < ApplicationController
 
   def new
     @contact = Contact.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
     @contact = Contact.new(contact_params)
     if @contact.save
-      flash[:notice] = "Your contact was saved!"
-      redirect_to contacts_path
+      respond_to do |format|
+        format.html { redirect_to contacts_path }
+        format.js { flash.now[:notice] = "Saved" }
+      end
     else
-      render 'new'
+      redirect_to contacts_path
     end
   end
 

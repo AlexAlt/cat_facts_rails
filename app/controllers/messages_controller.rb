@@ -5,10 +5,14 @@ class MessagesController < ApplicationController
 
   def new
     @message = Message.new
+    @contacts = Contact.all
   end
 
   def create
     @message = Message.new(message_params)
+    @contacts = Contact.all
+
+
     if @message.save
       flash[:notice] = "Your message was sent!"
       redirect_to messages_path

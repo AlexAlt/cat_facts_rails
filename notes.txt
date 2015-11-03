@@ -1,0 +1,19 @@
+<%= form_tag @message do |f| %>
+    <%= f.error_notification %>
+    <% if @message.errors.any? %>
+      <% @message.errors.full_messages.each do |m| %>
+      <div class='alert alert-danger'>
+        <p><%= m %></p>
+      </div>
+      <% end %>
+    <% end %>
+  <div class="form-inputs form-group">
+    <%= f.input :to %>
+    <%= f.input :to, collection: @contacts, as: :select, group_method: :name, value: :phonenumber%>
+    <%= f.input :from, input_html: {value: "5412482591"} %>
+    <%= f.input :body, as: :text, class: "form-control" %>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit, "Send Cat Fact" %>
+  </div>
+<% end %>
