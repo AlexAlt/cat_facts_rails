@@ -24,10 +24,12 @@ class MessagesController < ApplicationController
     @contacts = Contact.all
 
     if @message.save
-      flash[:notice] = "Your message was sent!"
-      redirect_to messages_path
+      respond_to do |format|
+        format.html { redirect_to messages_path }
+        format.js { flash.now[:notice] = "Message Sent!!" }
+      end
     else
-      render 'new'
+      redirect_to messages_path
     end
   end
 

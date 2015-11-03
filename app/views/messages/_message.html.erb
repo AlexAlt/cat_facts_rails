@@ -1,0 +1,7 @@
+
+<% if Contact.exists?(:phonenumber => message.to) %>
+  <% contact = Contact.where(:phonenumber => message.to).take %>
+    <li><%= link_to "To #{contact.name}, #{message.created_at.strftime('at %I:%M%p')}", message %></li>
+  <% else %>
+    <li><%= link_to "To #{message.to}, #{message.created_at.strftime('at %I:%M%p')}", message %></li>
+<% end %>

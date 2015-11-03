@@ -1,13 +1,17 @@
 <%= render "layouts/errors", :object => @message %>
 
 
-<%= form_tag (messages_path) do %>
+<%= form_tag (messages_path), remote: true do %>
 
   <div class="form-inputs form-group">
-    <%= text_field_tag "to" %>
-    <%= select_tag "to_collection", options_from_collection_for_select(@contacts, "phonenumber", "name"), include_blank: true %>
-    <%= text_field_tag "from", "5412482591" %>
-    <%= text_area_tag "body" %>
+    <%= label_tag 'To' %>
+    <%= text_field_tag("to", nil, class: 'form-control') %>
+    <%= label_tag 'Or, select an existing contact:' %>
+    <%= select_tag "to_collection", options_from_collection_for_select(@contacts, "phonenumber", "name"), options = { include_blank: true, class: 'form-control'} %>
+    <%= label_tag 'From' %>
+    <%= text_field_tag("from", "5412482591", class: 'form-control') %>
+    <%= label_tag 'Cat Fact' %>
+    <%= text_area_tag("body", nil, class: 'form-control') %>
   </div>
   <div class="form-actions">
     <%= submit_tag "Send Cat Fact" %>

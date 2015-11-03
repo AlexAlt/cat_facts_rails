@@ -1,0 +1,3 @@
+$("form").hide();
+$("#new-fact").show();
+$(".messages-list").append("<%= j render(@message) %>").prepend("<p class='alert alert-success'><%= flash[:notice] %></p>");
