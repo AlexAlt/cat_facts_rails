@@ -1,5 +1,5 @@
 <div class="contact-card">
-  <%= render @contact %>
+  <%= render 'contact_show_tile', contact: @contact %>
 </div>
 
 <%= link_to "Update Contact", edit_contact_path(@contact), id: 'update-contact', remote: true  %>

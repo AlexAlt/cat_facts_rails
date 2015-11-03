@@ -1,7 +1,8 @@
-<h1>Contacts</h1>
-<p>
-  <%= link_to "Add new Catact", new_contact_path, id: "new-contact", remote: true %>
-</p>
+<h1>Catacts</h1>
+
+<p><%= link_to "Home", root_path %></p>
+<p> <%= link_to "Add new Catact", new_contact_path, id: "new-contact", remote: true %></p>
+<hr>
 <div class="contacts-list">
   <%= render @contacts %>
 </div>
