@@ -9,28 +9,43 @@ class MessagesController < ApplicationController
   end
 
   def create
+    # @contacts = Contact.all
+    params_saved = params
     from = params[:from]
     body = params[:body]
-    if params[:to].present? && params[:to_collection].present?
-      flash[:notice] = "You can only choose one number"
-      render "new"
-    elsif params[:to].present?
-      to = params[:to]
-    else params[:to_collection].present?
-      to = params[:to_collection]
-    end
-    params = { to: to, from: from, body: body}
-    @message = Message.new(params)
-    @contacts = Contact.all
+    to = []
 
-    if @message.save
+
+    if params_saved[:to].present?
+      to = to.push(params_saved[:to]).first
+      params = { to: to, from: from, body: body}
+      @message = Message.new(params)
+      if @message.save
+        respond_to do |format|
+          format.html { redirect_to messages_path }
+          format.js { flash.now[:notice] = "Message Sent!!" }
+        end
+      else
+        redirect_to messages_path
+      end
+    elsif params_saved[:contact_ids].any?
+      params_saved[:contact_ids].each do |contact|
+        found_contact = Contact.find(contact)
+        to.push(found_contact.phonenumber)
+      end
+    end
+
+    if to.class == Array && to.length > 1
+      to.each do |t|
+        Message.create({to: t, body: body, from: from})
+      end
       respond_to do |format|
         format.html { redirect_to messages_path }
-        format.js { flash.now[:notice] = "Message Sent!!" }
+        format.js { render :messages_sent }
       end
-    else
-      redirect_to messages_path
+
     end
+
   end
 
   def show
